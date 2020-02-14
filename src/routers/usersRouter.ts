@@ -23,13 +23,6 @@ usersRouter.get('/users', async (req, res) => {
 });
 
 usersRouter.post('/users', async (req, res) => {
-	const token = isAuthorized(req, res);
-
-	if (!token) {
-		return;
-	}
-
-	// CHANGE ID LATER
 	const newUser = new User(
 		req.body.id,
 		req.body.firstName,
