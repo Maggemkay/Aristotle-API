@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 
 import loginRouter from './routers/loginRouter';
@@ -6,14 +8,15 @@ import usersRouter from './routers/usersRouter';
 
 import { createConnection } from 'typeorm';
 
-const hostname = process.env.API_HOST;
-const port = process.env.API_PORT;
-
 const app = express();
 
-(async () => {
-	await dotenv.config();
+const hostname = process.env.API_HOST as string;
+const port = (process.env.API_PORT as unknown) as number;
 
+console.log(hostname);
+console.log(port);
+
+(async () => {
 	await createConnection({
 		name: 'default',
 		type: 'mysql',
