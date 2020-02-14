@@ -13,9 +13,6 @@ const app = express();
 const hostname = process.env.API_HOST as string;
 const port = (process.env.API_PORT as unknown) as number;
 
-console.log(hostname);
-console.log(port);
-
 (async () => {
 	await createConnection({
 		name: 'default',
