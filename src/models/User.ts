@@ -14,15 +14,12 @@ import {
 	RelationId,
 } from 'typeorm';
 
-@Entity('user', { schema: 'tributedb' })
+@Entity('user', { schema: process.env.DB_NAME })
 export class User {
-	@PrimaryColumn('varchar', {
-		nullable: false,
-		primary: true,
-		length: 36,
+	@PrimaryGeneratedColumn('uuid', {
 		name: 'Id',
 	})
-	public id: string;
+	public id!: string;
 
 	@Column('varchar', {
 		nullable: false,
@@ -60,14 +57,12 @@ export class User {
 	public password: string;
 
 	constructor(
-		id: string,
 		firstName: string,
 		lastName: string,
 		username: string,
 		email: string,
 		password: string
 	) {
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;

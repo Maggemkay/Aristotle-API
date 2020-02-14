@@ -24,7 +24,6 @@ usersRouter.get('/users', async (req, res) => {
 
 usersRouter.post('/users', async (req, res) => {
 	const newUser = new User(
-		req.body.id,
 		req.body.firstName,
 		req.body.lastName,
 		req.body.username,

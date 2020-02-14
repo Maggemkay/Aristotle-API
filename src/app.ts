@@ -25,7 +25,7 @@ console.log(port);
 		username: process.env.DB_USER,
 		password: process.env.DB_PASSWORD,
 		database: process.env.DB_NAME,
-		synchronize: true,
+		synchronize: false,
 		entities:
 			process.env.NODE_ENV === 'dev'
 				? ['./src/models/*.ts']
