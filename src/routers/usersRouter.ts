@@ -32,7 +32,6 @@ usersRouter.post('/users', async (req, res) => {
 	// CHANGE ID LATER
 	const newUser = new User(
 		req.body.id,
-		req.body.rank,
 		req.body.firstName,
 		req.body.lastName,
 		req.body.username,
@@ -59,7 +58,6 @@ usersRouter.patch('/users/:id', async (req, res) => {
 
 	const editedId = req.params.id;
 	const changedParameters = {
-		rank: req.body.rank,
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		username: req.body.username,

@@ -6,8 +6,8 @@ import usersRouter from './routers/usersRouter';
 
 import { createConnection } from 'typeorm';
 
-const hostname = '127.0.0.1';
-const port = 8080;
+const hostname = process.env.API_HOST;
+const port = process.env.API_PORT;
 
 const app = express();
 

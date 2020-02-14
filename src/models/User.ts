@@ -24,13 +24,6 @@ export class User {
 	})
 	public id: string;
 
-	@Column('tinyint', {
-		nullable: false,
-		width: 1,
-		name: 'Rank',
-	})
-	public rank: boolean;
-
 	@Column('varchar', {
 		nullable: false,
 		length: 64,
@@ -68,7 +61,6 @@ export class User {
 
 	constructor(
 		id: string,
-		rank: boolean,
 		firstName: string,
 		lastName: string,
 		username: string,
@@ -76,7 +68,6 @@ export class User {
 		password: string
 	) {
 		this.id = id;
-		this.rank = rank;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
