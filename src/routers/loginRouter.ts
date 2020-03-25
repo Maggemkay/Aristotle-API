@@ -24,7 +24,7 @@ loginRouter.post('/', async (req, res) => {
 		}
 
 		const token = await generateToken(loginUser.id);
-		res.send(token);
+		res.status(200).json(token);
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ error: 'Internal server error!' });

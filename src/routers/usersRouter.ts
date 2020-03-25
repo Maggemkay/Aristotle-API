@@ -3,6 +3,7 @@ import { getRepository, Table } from 'typeorm';
 import { User } from '../models/User';
 import {} from 'typeorm';
 import { isAuthorized } from '../authentication';
+import { userValidation } from '../requestValidation';
 
 const usersRouter = express.Router();
 
@@ -31,7 +32,21 @@ usersRouter.post('/users', async (req, res) => {
 		req.body.password
 	);
 
+	if (userValidation(newUser) === false) {
+		return res.status(400).json('Invalid input!');
+	}
+
 	try {
+		const existingUser = await getRepository(User).findOne({
+			where: { email: newUser.email },
+		});
+
+		console.log(existingUser);
+
+		if (existingUser !== undefined) {
+			throw Error;
+		}
+
 		const repo = getRepository(User);
 		repo.save(newUser);
 
@@ -53,9 +68,10 @@ usersRouter.patch('/users/:id', async (req, res) => {
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		username: req.body.username,
-		email: req.body.email,
 		password: req.body.password,
 	};
+
+	// Check validation on each parameter IF it exists
 
 	const validParameters = Object.entries(changedParameters).reduce(
 		(previous, current) => {
