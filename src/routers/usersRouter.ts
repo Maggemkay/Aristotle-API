@@ -41,8 +41,6 @@ usersRouter.post('/users', async (req, res) => {
 			where: { email: newUser.email },
 		});
 
-		console.log(existingUser);
-
 		if (existingUser !== undefined) {
 			throw Error;
 		}
