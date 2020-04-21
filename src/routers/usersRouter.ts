@@ -23,6 +23,18 @@ usersRouter.get('/users', async (req, res) => {
 	}
 });
 
+usersRouter.get('/users/id', async (req, res) => {
+	const token = isAuthorized(req, res);
+
+	if (!token) {
+		return;
+	}
+
+	const user = await getRepository(User).findOne(token.sub);
+
+	res.status(200).json(user);
+});
+
 usersRouter.post('/users', async (req, res) => {
 	const newUser = new User(
 		req.body.firstName,
